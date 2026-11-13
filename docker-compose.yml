@@ -1,0 +1,28 @@
+services:
+  s3proxy:
+    build: .
+    env_file: .env
+    environment:
+      CLAMAV_HOST: clamav
+      DATA_DIR: /data
+    ports:
+      - "8080:8080"
+    volumes:
+      - s3proxy-data:/data
+    depends_on:
+      clamav:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Optional virus scanner. Remove this service (and CLAMAV_HOST) to run without it.
+  clamav:
+    image: clamav/clamav:stable
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "clamdcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      start_period: 180s
+
+volumes:
+  s3proxy-data:

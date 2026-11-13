@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{{BRAND}}</title>
+  <link rel="stylesheet" href="/static/upload.css">
+</head>
+<body data-state="{{STATE}}">
+  <main class="card">
+    <header>
+      <div class="lock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 1 1 6 0v3H9Z"/></svg>
+      </div>
+      <div>
+        <h1>{{BRAND}}</h1>
+        <p class="label">{{LABEL}}</p>
+      </div>
+    </header>
+
+    <section id="error" class="notice error" hidden>
+      <strong>This link can't be used.</strong>
+      <span id="error-text">{{MESSAGE}}</span>
+      <p>Please ask the sender for a new link.</p>
+    </section>
+
+    <section id="uploader" hidden>
+      <label id="drop" class="drop" for="picker" tabindex="0">
+        <input id="picker" type="file" multiple>
+        <span class="big">Drop files here or <u>choose files</u></span>
+        <span class="hint" id="limits">Loading…</span>
+      </label>
+      <ul id="queue" class="list" aria-live="polite"></ul>
+      <h2 id="done-title" hidden>Received files</h2>
+      <ul id="done" class="list"></ul>
+      <p class="foot">Files are encrypted in transit (HTTPS) and at rest, checked for their real type, and
+        location data is removed from photos. Only the requesting team can open them.</p>
+    </section>
+  </main>
+  <script src="/static/upload.js" defer></script>
+</body>
+</html>
